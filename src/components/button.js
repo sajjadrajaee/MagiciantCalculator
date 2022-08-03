@@ -8,24 +8,24 @@ class TempButton extends React.Component {
     } = this.props;
     return (
       <div className="row">
-        <button type="button">{firstButton}</button>
-        <button type="button">{secondButton}</button>
-        <button type="button">{thirdButton}</button>
-        {fourthButton ? <button type="button">{fourthButton}</button> : null}
+        {firstButton ? <button type="button" className="calcButton">{firstButton}</button> : null}
+        {firstButton ? <button type="button" className="calcButton">{secondButton}</button> : <button type="button" className="zeroButton">{secondButton}</button>}
+        <button type="button" className="calcButton">{thirdButton}</button>
+        <button type="button" className="calcButtonColor">{fourthButton}</button>
       </div>
     );
   }
 }
 
 TempButton.defaultProps = {
-  fourthButton: '',
+  firstButton: '',
 };
 
 TempButton.propTypes = {
-  firstButton: PropTypes.string.isRequired,
+  firstButton: PropTypes.string,
   secondButton: PropTypes.string.isRequired,
   thirdButton: PropTypes.string.isRequired,
-  fourthButton: PropTypes.string,
+  fourthButton: PropTypes.string.isRequired,
 
 };
 

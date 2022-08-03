@@ -10,7 +10,7 @@ class Calc extends React.Component {
         <TempButton firstButton="7" secondButton="8" thirdButton="9" fourthButton="x" />
         <TempButton firstButton="4" secondButton="5" thirdButton="6" fourthButton="-" />
         <TempButton firstButton="1" secondButton="2" thirdButton="3" fourthButton="+" />
-        <TempButton firstButton="0" secondButton="." thirdButton="=" />
+        <TempButton secondButton="0" thirdButton="." fourthButton="=" />
       </div>
     );
   }
