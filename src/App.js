@@ -5,9 +5,7 @@ import Calc from './components/calculator';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {
   render() {
-    return (
-      <Calc />
-    );
+    return <Calc />;
   }
 }
 
