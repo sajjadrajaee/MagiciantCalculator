@@ -1,61 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import calculate from '../logic/calculate';
 import TempButton from './button';
 // eslint-disable-next-line react/prefer-stateless-function
-class Calc extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataObject: {
-        total: null,
-        next: null,
-        operation: null,
-      },
-    };
-    this.updateObject = this.updateObject.bind(this);
-  }
+/* eslint-disable react/jsx-no-bind */
+export default function Calc() {
+  const [dataObj, setDataObj] = useState({
+    total: null,
+    next: null,
+    operation: null,
+  });
 
-  componentDidUpdate() {
-    this.updateScreen();
-  }
-
-  updateObject(event) {
+  function updateObject(event) {
     const val = event.target.textContent;
-    this.setState((prevState) => ({
-      dataObject: { ...calculate(prevState.dataObject, val) },
-    }));
+    setDataObj((prevDataObj) => calculate(prevDataObj, val));
   }
 
-  updateScreen() {
+  function updateScreen() {
     const screen = document.querySelector('.result-screen');
-    const { dataObject } = this.state;
-    if (dataObject.next && !dataObject.total) {
-      screen.value = dataObject.next;
-    } else if (!dataObject.next && dataObject.total) {
-      screen.value = dataObject.operation
-        ? `${dataObject.total} ${dataObject.operation}`
-        : dataObject.total;
-    } else if (!dataObject.next && !dataObject.total) {
+    if (dataObj.next && !dataObj.total) {
+      screen.value = dataObj.next;
+    } else if (!dataObj.next && dataObj.total) {
+      screen.value = dataObj.operation
+        ? `${dataObj.total} ${dataObj.operation}`
+        : dataObj.total;
+    } else if (!dataObj.next && !dataObj.total) {
       screen.value = '';
     } else {
-      screen.value = `${dataObject.total} ${dataObject.operation
-        ? `${dataObject.operation} ${dataObject.next}`
-        : dataObject.next
+      screen.value = `${dataObj.total} ${dataObj.operation
+        ? `${dataObj.operation} ${dataObj.next}`
+        : dataObj.next
       }`;
     }
   }
 
-  render() {
-    return (
-      <div className="container">
-        <input type="text" className="result-screen" value={0} readOnly />
-        <TempButton firstButton="AC" secondButton="+/-" thirdButton="%" fourthButton="÷" updateObject={this.updateObject} />
-        <TempButton firstButton="7" secondButton="8" thirdButton="9" fourthButton="x" updateObject={this.updateObject} />
-        <TempButton firstButton="4" secondButton="5" thirdButton="6" fourthButton="-" updateObject={this.updateObject} />
-        <TempButton firstButton="1" secondButton="2" thirdButton="3" fourthButton="+" updateObject={this.updateObject} />
-        <TempButton secondButton="0" thirdButton="." fourthButton="=" updateObject={this.updateObject} />
-      </div>
-    );
-  }
+  useEffect(() => {
+    updateScreen();
+  }, [dataObj]);
+
+  return (
+    <div className="container">
+      <input type="text" className="result-screen" value={0} readOnly />
+      <TempButton firstButton="AC" secondButton="+/-" thirdButton="%" fourthButton="÷" updateObject={updateObject} />
+      <TempButton firstButton="7" secondButton="8" thirdButton="9" fourthButton="x" updateObject={updateObject} />
+      <TempButton firstButton="4" secondButton="5" thirdButton="6" fourthButton="-" updateObject={updateObject} />
+      <TempButton firstButton="1" secondButton="2" thirdButton="3" fourthButton="+" updateObject={updateObject} />
+      <TempButton secondButton="0" thirdButton="." fourthButton="=" updateObject={updateObject} />
+    </div>
+  );
 }
-export default Calc;
