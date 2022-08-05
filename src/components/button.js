@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 class TempButton extends React.Component {
   render() {
     const {
-      firstButton, secondButton, thirdButton, fourthButton,
+      firstButton, secondButton, thirdButton, fourthButton, updateObj
     } = this.props;
     return (
       <div className="row">
-        {firstButton ? <button type="button" className="calcButton">{firstButton}</button> : null}
-        {firstButton ? <button type="button" className="calcButton">{secondButton}</button> : <button type="button" className="zeroButton">{secondButton}</button>}
-        <button type="button" className="calcButton">{thirdButton}</button>
-        <button type="button" className="calcButtonColor">{fourthButton}</button>
+        {firstButton ? <button type="button" className="calcButton" onClick={updateObj} buttonName={firstButton}>{firstButton}</button> : null}
+        {firstButton ? <button type="button" className="calcButton" onClick={updateObj} buttonName={secondButton}>{secondButton}</button> : <button type="button" className="zeroButton" onClick={updateObj} buttonName={secondButton}>{secondButton}</button>}
+        <button type="button" className="calcButton" onClick={updateObj} buttonName={thirdButton}>{thirdButton}</button>
+        <button type="button" className="calcButtonColor" onClick={updateObj} buttonName={thirdButton}>{fourthButton}</button>
       </div>
     );
   }
@@ -26,7 +26,7 @@ TempButton.propTypes = {
   secondButton: PropTypes.string.isRequired,
   thirdButton: PropTypes.string.isRequired,
   fourthButton: PropTypes.string.isRequired,
-
+  updateObj: PropTypes.func.isRequired,
 };
 
 export default TempButton;
