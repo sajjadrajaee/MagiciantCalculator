@@ -1,18 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const navbar = () => (
-  <nav className="navBar">
-    <ul>
-      <li>
-        <NavLink to="/qoute">qoute</NavLink>
+export default function Navbar() {
+  return (
+    <div className="navbar">
+      <h1 className="navTitle">Magician Calculator!</h1>
+      <nav className="navLinks">
+        <Link className="navItem" to="/">Home</Link>
+        {' '}
         |
         {' '}
-      </li>
-      <li><NavLink to="/aboutCalc">calculator</NavLink></li>
-
-    </ul>
-  </nav>
-);
-
-export default navbar();
+        <Link className="navItem" to="/aboutCalculator">Calculator</Link>
+        {' '}
+        |
+        {' '}
+        <Link className="navItem" to="/quote">quotes</Link>
+      </nav>
+    </div>
+  );
+}
