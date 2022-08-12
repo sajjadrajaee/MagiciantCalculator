@@ -6,11 +6,11 @@ export default function Navbar() {
     <div className="navbar">
       <h1 className="navTitle">Magician Calculator!</h1>
       <nav className="navLinks">
-        <Link className="navItem" to="/">Home</Link>
+        <Link className="navItem" to="/aboutCalculator">Home</Link>
         {' '}
         |
         {' '}
-        <Link className="navItem" to="/aboutCalculator">Calculator</Link>
+        <Link className="navItem" to="/">Calculator</Link>
         {' '}
         |
         {' '}
